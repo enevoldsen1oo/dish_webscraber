@@ -6,7 +6,7 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
 
     // Simply verify whether that an recipe has been added
-    println!("args: {:?}", args[1]);
+    println!("Input: {:?}", args[1]);
     if args.len() < 2 {
         eprintln!("Usage: cargo run <search_query.");
         std::process::exit(1);
@@ -15,6 +15,7 @@ fn main() {
     if let Ok(url) = get_recipe_url(args[1].to_string()) {
         let second_url: String = url.clone();
         if let Ok(items) = get_recipe_items(url) {
+            println!("");
             println!("Ingredients: ");
             for val in items {
                 println!("{:?}", val);
@@ -22,6 +23,7 @@ fn main() {
         }
 
         if let Ok(description) = get_recipe_description(second_url) {
+            println!("");
             println!("Description: ");
             for val in description {
                 println!("{:?}", val);
